@@ -16,7 +16,7 @@ val base: Project = requireNotNull(stonecutter.node.sibling("")?.project) {
 version = "${mod.version}+$minecraft"
 group = "${mod.group}.${mod.id}.api.$loader"
 base {
-    archivesName.set("${mod.id}-api")
+    archivesName.set("${mod.id}")
 }
 
 val shadowBundle: Configuration by configurations.creating {
@@ -126,7 +126,7 @@ java {
 tasks.remapJar {
     injectAccessWidener = true
     inputFile = tasks.shadowJar.get().archiveFile
-    archiveClassifier = loader.toString()
+    archiveClassifier = loader.toString() + "-api"
     dependsOn(tasks.shadowJar)
 }
 
